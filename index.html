@@ -4,229 +4,626 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>GetWellSoon</title>
+  <title>Get Well Soon, Sir Maven!</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, sans-serif;
+
+      font-family: Arial, Helvetica, sans-serif;
       background: #eef2f7;
+
       display: flex;
       justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      align-items: flex-start;
+
+      padding: 20px 0;
+
+      overflow-x: hidden;
     }
 
+    /* =========================
+       MAIN CARD
+    ========================= */
+
     .container {
-      width: 92%;
+      width: calc(100% - 30px);
       max-width: 520px;
+
       background: white;
-      padding: 35px 25px;
-      border-radius: 18px;
+
+      padding: 32px 22px;
+
+      border-radius: 20px;
+
       text-align: center;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.15);
     }
+
+
+    /* =========================
+       HEADER LABEL
+    ========================= */
 
     .label {
       display: inline-block;
+
       background: #e8eef7;
-      padding: 7px 15px;
+
+      padding: 7px 14px;
+
       border-radius: 20px;
-      font-size: 12px;
+
+      font-size: 11px;
       font-weight: bold;
+
       letter-spacing: 1px;
+
+      color: #444;
     }
+
+
+    /* =========================
+       TEXT
+    ========================= */
 
     h1 {
       font-size: 28px;
-      margin: 18px 0 10px;
+
+      margin:
+        18px 0 12px;
+
+      line-height: 1.2;
     }
+
+
+    h2 {
+      line-height: 1.5;
+    }
+
 
     .intro {
       color: #555;
-      line-height: 1.6;
+
+      line-height: 1.65;
+
       font-size: 15px;
+
+      margin-bottom: 0;
     }
+
+
+    /* =========================
+       RESEARCH BOX
+    ========================= */
 
     .research-box {
       margin-top: 25px;
-      padding: 20px;
+
+      padding: 20px 15px;
+
       background: #f8f9fb;
-      border-radius: 12px;
+
+      border-radius: 15px;
     }
 
+
     .research-box small {
+      font-size: 11px;
+
       font-weight: bold;
+
+      letter-spacing: 1px;
+
       color: #777;
     }
 
+
     .question {
-      margin-top: 8px;
+      margin-top: 10px;
+
       font-size: 18px;
+
       font-weight: bold;
-      line-height: 1.4;
-    }
 
-    .buttons {
-      margin-top: 25px;
-      min-height: 80px;
-    }
-
-    button {
-      width: 120px;
-      height: 58px;
-      margin: 8px;
-      border: none;
-      border-radius: 12px;
-      font-size: 22px;
-      font-weight: bold;
-      cursor: pointer;
-      touch-action: none;
-      transition: transform 0.15s ease;
-    }
-
-    /* GRADE 1 - stays fixed */
-    #grade1 {
-      background: #198754;
-      color: white;
-    }
-
-    #grade1:hover {
-      transform: scale(1.05);
-    }
-
-    /* GRADE 5 - runs away */
-    #grade5 {
-      background: #dc3545;
-      color: white;
-      z-index: 9999;
-    }
-
-    #status {
-      min-height: 45px;
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: bold;
-      color: #555;
       line-height: 1.5;
     }
+
+
+    /* =========================
+       BUTTON ESCAPE AREA
+    ========================= */
+
+    .buttons {
+      position: relative;
+
+      width: 100%;
+
+      height: 170px;
+
+      margin-top: 15px;
+
+      overflow: hidden;
+
+      border-radius: 12px;
+
+      background: #ffffff;
+
+      border: 1px dashed #d9dee5;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    button {
+      position: absolute;
+
+      width: 100px;
+      height: 55px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      touch-action: none;
+
+      user-select: none;
+
+      -webkit-user-select: none;
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+
+    /* =========================
+       GRADE 1
+
+       NEVER MOVES
+    ========================= */
+
+    #grade1 {
+      left: 25%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      background: #198754;
+
+      color: white;
+
+      z-index: 10;
+
+      box-shadow:
+        0 4px 10px
+        rgba(25, 135, 84, 0.25);
+    }
+
+
+    #grade1:hover {
+      transform:
+        translate(-50%, -50%)
+        scale(1.06);
+    }
+
+
+    /* =========================
+       GRADE 5
+
+       THIS BUTTON ESCAPES
+    ========================= */
+
+    #grade5 {
+      left: 75%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      background: #dc3545;
+
+      color: white;
+
+      z-index: 10;
+
+      box-shadow:
+        0 4px 10px
+        rgba(220, 53, 69, 0.25);
+    }
+
+
+    /* =========================
+       STATUS MESSAGE
+    ========================= */
+
+    #status {
+      min-height: 48px;
+
+      margin-top: 15px;
+
+      padding: 5px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      color: #555;
+
+      line-height: 1.5;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     .footer {
       margin-top: 20px;
+
       font-size: 11px;
+
       color: #999;
-      line-height: 1.5;
-    }
 
-    .final-grade {
-      font-size: 55px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    .result-box {
-      background: #f4f8f5;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 20px 0;
       line-height: 1.6;
     }
 
+
+    /* =========================
+       FINAL RESULT
+    ========================= */
+
+    .result-box {
+      background: #f4f8f5;
+
+      padding: 22px;
+
+      border-radius: 15px;
+
+      margin: 22px 0;
+
+      line-height: 1.6;
+    }
+
+
+    .result-box small {
+      font-size: 11px;
+
+      color: #777;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+    }
+
+
+    .final-grade {
+      font-size: 55px;
+
+      font-weight: bold;
+
+      margin: 15px 0;
+    }
+
+
     hr {
       border: 0;
-      border-top: 1px solid #ddd;
+
+      border-top:
+        1px solid #ddd;
+
       margin: 25px 0;
     }
+
+
+    /* =========================
+       MOBILE VIEW
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 10px 0;
+      }
+
+
+      .container {
+        width:
+          calc(100% - 18px);
+
+        padding:
+          24px 14px;
+
+        border-radius: 16px;
+      }
+
+
+      .label {
+        font-size: 9px;
+
+        padding:
+          6px 10px;
+      }
+
+
+      h1 {
+        font-size: 24px;
+
+        margin-top: 15px;
+      }
+
+
+      .intro {
+        font-size: 14px;
+
+        line-height: 1.6;
+      }
+
+
+      .research-box {
+        margin-top: 20px;
+
+        padding:
+          17px 10px;
+      }
+
+
+      .question {
+        font-size: 16px;
+      }
+
+
+      /*
+        Larger escape area on phones
+        so Grade 5 has room to run.
+      */
+
+      .buttons {
+        height: 190px;
+      }
+
+
+      button {
+        width: 85px;
+
+        height: 50px;
+
+        font-size: 20px;
+      }
+
+
+      #grade1 {
+        left: 25%;
+      }
+
+
+      #grade5 {
+        left: 75%;
+      }
+
+
+      #status {
+        font-size: 13px;
+
+        min-height: 55px;
+      }
+
+
+      .final-grade {
+        font-size: 45px;
+      }
+
+    }
+
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================= */
+
+    @media (max-width: 350px) {
+
+      .container {
+        width:
+          calc(100% - 10px);
+
+        padding:
+          20px 10px;
+      }
+
+
+      h1 {
+        font-size: 22px;
+      }
+
+
+      .buttons {
+        height: 200px;
+      }
+
+
+      button {
+        width: 75px;
+
+        height: 48px;
+
+        font-size: 18px;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="container" id="mainCard">
+
+<div
+  class="container"
+  id="mainCard"
+>
+
+
+  <!-- ======================
+       TITLE
+  ======================= -->
 
   <span class="label">
+
     IT RESEARCH • FINAL DATA VALIDATION
+
   </span>
 
+
   <h1>
-    Get Well Soon, Sir Maven! ❤️
+
+    Get Well Soon,
+    Sir Maven! ❤️
+
   </h1>
+
+
+  <!-- ======================
+       GET WELL MESSAGE
+  ======================= -->
 
   <p class="intro">
 
-    We heard you're not feeling well,
-    Sir Maven, so we hope you take this
-    well-deserved rest day to relax and recover.
+    We hope you get plenty of rest
+    today and feel better soon,
+    Sir Maven!
 
     <br><br>
 
     But as your IT Research students,
-    we couldn't simply send an ordinary
+    we couldn't just send a normal
     get-well-soon message...
 
     <br><br>
 
     <strong>
-      We still have one important finding
-      that requires validation. 😂
+
+      We needed data. 📊😂
+
     </strong>
 
   </p>
 
 
+
+  <!-- ======================
+       RESEARCH SECTION
+  ======================= -->
+
   <div class="research-box">
 
+
     <small>
+
       RESEARCH QUESTION
+
     </small>
+
 
     <p class="question">
 
-      Sir Maven, please confirm the grade
-      received by the researchers:
+      Sir Maven, please confirm
+      the grade received by
+      the researchers:
 
     </p>
 
 
-    <div class="buttons">
 
-      <!-- GRADE 1 -->
+    <!-- ======================
+         ANSWER AREA
+    ======================= -->
+
+    <div
+      class="buttons"
+      id="buttonArea"
+    >
+
+
+      <!--
+        GRADE 1
+
+        This button stays fixed.
+      -->
+
       <button id="grade1">
+
         1
+
       </button>
 
 
-      <!-- GRADE 5 -->
+
+      <!--
+        GRADE 5
+
+        This button runs away.
+      -->
+
       <button id="grade5">
+
         5
+
       </button>
+
 
     </div>
 
+
+
+    <!-- ======================
+         RESEARCH RESPONSE
+    ======================= -->
 
     <div id="status">
 
-      Select one response to validate
-      our research findings.
+      Select one response
+      to validate our findings.
 
     </div>
 
+
   </div>
+
 
 
   <p class="footer">
 
     Research Ethics Statement:
     Participation is voluntary.
-    However, some response options
+
+    <br>
+
+    Available response options
     may behave unexpectedly. 😂
 
   </p>
+
 
 </div>
 
@@ -234,22 +631,48 @@
 
 <script>
 
+  /*
+    ============================
+    GET ELEMENTS
+    ============================
+  */
+
   const grade1 =
-    document.getElementById("grade1");
+    document.getElementById(
+      "grade1"
+    );
+
 
   const grade5 =
-    document.getElementById("grade5");
+    document.getElementById(
+      "grade5"
+    );
+
+
+  const buttonArea =
+    document.getElementById(
+      "buttonArea"
+    );
+
 
   const status =
-    document.getElementById("status");
+    document.getElementById(
+      "status"
+    );
 
 
   let attempts = 0;
 
 
+
   /*
-    Messages displayed whenever
-    Sir Maven attempts to choose Grade 5
+    ============================
+    RESEARCH MESSAGES
+
+    A new message appears
+    every time Sir Maven
+    attempts Grade 5.
+    ============================
   */
 
   const researchMessages = [
@@ -262,9 +685,9 @@
 
     "💻 ERROR 404: Valid Grade 5 response not found.",
 
-    "📈 Current findings strongly favor Grade 1.",
-
     "🧪 Grade 5 failed the reliability test.",
+
+    "📈 Current findings strongly favor Grade 1.",
 
     "😭 Sir Maven... the data is becoming very clear.",
 
@@ -279,15 +702,24 @@
 
 
   /*
-    FUNCTION:
-    Make Grade 5 escape
+    ============================
+    MOVE GRADE 5
+
+    Grade 5 only moves INSIDE
+    the answer area.
+
+    This makes it much better
+    on mobile.
+    ============================
   */
 
   function moveGrade5(event) {
 
+
     if (event) {
 
       event.preventDefault();
+
       event.stopPropagation();
 
     }
@@ -296,71 +728,163 @@
     attempts++;
 
 
-    /*
-      Change Grade 5 from its normal
-      position to a floating position.
-    */
-
-    grade5.style.position = "fixed";
-
 
     /*
-      Keep Grade 5 inside the screen.
+      Get dimensions of
+      the escape area.
     */
 
-    const padding = 20;
+    const areaWidth =
+      buttonArea.clientWidth;
+
+
+    const areaHeight =
+      buttonArea.clientHeight;
+
+
+    const buttonWidth =
+      grade5.offsetWidth;
+
+
+    const buttonHeight =
+      grade5.offsetHeight;
+
+
+
+    /*
+      Padding keeps Grade 5
+      away from the edges.
+    */
+
+    const padding = 8;
+
 
 
     const maxX =
-      window.innerWidth
-      - grade5.offsetWidth
+      areaWidth
+      - buttonWidth
       - padding;
 
 
     const maxY =
-      window.innerHeight
-      - grade5.offsetHeight
+      areaHeight
+      - buttonHeight
       - padding;
 
 
-    /*
-      Generate random location
-    */
-
-    const randomX =
-      Math.max(
-        padding,
-        Math.random() * maxX
-      );
-
-
-    const randomY =
-      Math.max(
-        padding,
-        Math.random() * maxY
-      );
-
 
     /*
-      Move Grade 5
+      Create random position.
     */
+
+    let randomX =
+      padding +
+      Math.random()
+      * (maxX - padding);
+
+
+    let randomY =
+      padding +
+      Math.random()
+      * (maxY - padding);
+
+
+
+    /*
+      Avoid putting Grade 5
+      directly over Grade 1.
+    */
+
+    const grade1Rect =
+      grade1.getBoundingClientRect();
+
+
+    const areaRect =
+      buttonArea.getBoundingClientRect();
+
+
+    const grade1X =
+      grade1Rect.left
+      - areaRect.left;
+
+
+    const grade1Y =
+      grade1Rect.top
+      - areaRect.top;
+
+
+
+    /*
+      If Grade 5 randomly lands
+      too close to Grade 1,
+      move it to the opposite side.
+    */
+
+    if (
+      Math.abs(randomX - grade1X)
+      < 100
+      &&
+      Math.abs(randomY - grade1Y)
+      < 70
+    ) {
+
+      if (
+        randomX
+        < areaWidth / 2
+      ) {
+
+        randomX =
+          Math.max(
+            areaWidth
+            - buttonWidth
+            - padding,
+            padding
+          );
+
+      }
+
+      else {
+
+        randomX =
+          padding;
+
+      }
+
+    }
+
+
+
+    /*
+      Remove initial centering
+      transform.
+
+      After the first escape,
+      left/top become exact
+      coordinates.
+    */
+
+    grade5.style.transform =
+      "none";
+
 
     grade5.style.left =
       randomX + "px";
+
 
     grade5.style.top =
       randomY + "px";
 
 
+
     /*
-      Show a different research message
-      after every attempt.
+      Change research message.
     */
 
     status.textContent =
       researchMessages[
         (attempts - 1)
-        % researchMessages.length
+        %
+        researchMessages.length
       ];
 
   }
@@ -368,38 +892,50 @@
 
 
   /*
-    ==============================
-    COMPUTER / LAPTOP
-    ==============================
+    ============================
+    DESKTOP
 
     Grade 5 escapes when
-    the mouse reaches it.
+    the mouse approaches.
+    ============================
   */
 
   grade5.addEventListener(
+
     "mouseenter",
+
     moveGrade5
+
   );
 
 
 
   /*
-    ==============================
+    ============================
     PHONE / TABLET
-    ==============================
 
-    Grade 5 escapes as soon as
-    Sir Maven touches the button.
+    Grade 5 moves immediately
+    when touched.
+    ============================
   */
 
   grade5.addEventListener(
+
     "pointerdown",
+
     moveGrade5
+
   );
 
 
 
+  /*
+    Extra touch protection
+    for mobile browsers.
+  */
+
   grade5.addEventListener(
+
     "touchstart",
 
     function(event) {
@@ -419,16 +955,17 @@
 
 
   /*
-    ==============================
+    ============================
     EXTRA PROTECTION
-    ==============================
 
-    Even if the browser somehow
-    registers a click on Grade 5,
-    it still cannot be selected.
+    Even if a click somehow
+    reaches Grade 5,
+    nothing will be submitted.
+    ============================
   */
 
   grade5.addEventListener(
+
     "click",
 
     function(event) {
@@ -444,17 +981,16 @@
 
 
   /*
-    ==============================
+    ============================
     GRADE 1
-    ==============================
 
-    Grade 1 NEVER moves.
-
-    It is the only valid
-    research response.
+    The only response
+    that can be selected.
+    ============================
   */
 
   grade1.addEventListener(
+
     "click",
 
     function() {
@@ -472,11 +1008,13 @@
         </span>
 
 
+
         <h1>
 
           Response Received! ✅
 
         </h1>
+
 
 
         <p class="intro">
@@ -488,7 +1026,8 @@
           <br><br>
 
           Your response has been
-          successfully recorded and validated.
+          successfully recorded
+          and validated.
 
         </p>
 
@@ -513,7 +1052,8 @@
 
           <strong>
 
-            Data successfully validated. ✅
+            Data successfully
+            validated. ✅
 
           </strong>
 
@@ -532,8 +1072,8 @@
 
           After repeated testing,
           Grade 1 was the only response
-          successfully recorded by
-          the research instrument.
+          successfully validated
+          by the research instrument.
 
         </p>
 
@@ -566,15 +1106,14 @@
 
           <br><br>
 
-          The researchers recommend
-          that no further data collection
-          be conducted today.
+          No further data collection
+          is recommended today.
 
           <br><br>
 
-          Instead, Sir Maven is advised
-          to proceed immediately to
-          the next phase:
+          Instead, Sir Maven
+          should proceed immediately
+          to the next phase:
 
         </p>
 
@@ -583,13 +1122,21 @@
         <h2>
 
           REST 🛌
+
           <br>
+
           ↓
+
           <br>
+
           RECOVER ❤️
+
           <br>
+
           ↓
+
           <br>
+
           GET WELL SOON! 💪
 
         </h2>
@@ -600,24 +1147,21 @@
 
 
 
-        <p>
+        <p class="intro">
 
           Jokes aside, Sir Maven,
-          we hope you get plenty of rest
-          and feel much better soon.
-
-          <br><br>
-
-          Thank you for still thinking
-          about us even when you're
-          not feeling well.
+          we hope you get plenty
+          of rest and feel
+          much better soon.
 
           <br><br>
 
           Enjoy your well-deserved
-          rest day, Sir!
+          rest day, Sir! ❤️
 
-          ❤️
+          <br><br>
+
+          — Your IT Research Students
 
         </p>
 
@@ -629,19 +1173,18 @@
             Limitation of the Study:
           </strong>
 
-          <br>
+          <br><br>
 
           Grade 5 was included
           as a possible response,
+
+          <br>
+
           but repeatedly refused
           to cooperate with
           the researchers.
 
           🏃💨
-
-          <br><br>
-
-          — Your IT Research Students
 
         </p>
 
@@ -653,6 +1196,7 @@
   );
 
 </script>
+
 
 </body>
 </html>
