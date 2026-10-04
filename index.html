@@ -29,7 +29,7 @@
       padding: 35px 25px;
       border-radius: 18px;
       text-align: center;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
     }
 
     .label {
@@ -87,8 +87,10 @@
       font-weight: bold;
       cursor: pointer;
       touch-action: none;
+      transition: transform 0.15s ease;
     }
 
+    /* GRADE 1 - stays fixed */
     #grade1 {
       background: #198754;
       color: white;
@@ -98,6 +100,7 @@
       transform: scale(1.05);
     }
 
+    /* GRADE 5 - runs away */
     #grade5 {
       background: #dc3545;
       color: white;
@@ -117,6 +120,7 @@
       margin-top: 20px;
       font-size: 11px;
       color: #999;
+      line-height: 1.5;
     }
 
     .final-grade {
@@ -132,6 +136,12 @@
       margin: 20px 0;
       line-height: 1.6;
     }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 25px 0;
+    }
   </style>
 </head>
 
@@ -139,104 +149,183 @@
 
 <div class="container" id="mainCard">
 
-  <span class="label">IT RESEARCH • DATA COLLECTION</span>
+  <span class="label">
+    IT RESEARCH • FINAL DATA VALIDATION
+  </span>
 
-  <h1>Get Well Soon, Prof! ❤️</h1>
+  <h1>
+    Get Well Soon, Sir Maven! ❤️
+  </h1>
 
   <p class="intro">
-    We hope you get plenty of rest today and feel better soon, Prof!
+
+    We heard you're not feeling well,
+    Sir Maven, so we hope you take this
+    well-deserved rest day to relax and recover.
+
     <br><br>
-    But since we're IT Research students, we couldn't just send
-    a normal get-well message...
+
+    But as your IT Research students,
+    we couldn't simply send an ordinary
+    get-well-soon message...
+
     <br><br>
-    <strong>We need one last piece of data. 😂</strong>
+
+    <strong>
+      We still have one important finding
+      that requires validation. 😂
+    </strong>
+
   </p>
+
 
   <div class="research-box">
 
-    <small>RESEARCH QUESTION</small>
+    <small>
+      RESEARCH QUESTION
+    </small>
 
     <p class="question">
-      Please confirm the grade received by the researchers:
+
+      Sir Maven, please confirm the grade
+      received by the researchers:
+
     </p>
+
 
     <div class="buttons">
 
+      <!-- GRADE 1 -->
       <button id="grade1">
         1
       </button>
 
+
+      <!-- GRADE 5 -->
       <button id="grade5">
         5
       </button>
 
     </div>
 
+
     <div id="status">
-      Select one response to complete the study.
+
+      Select one response to validate
+      our research findings.
+
     </div>
 
   </div>
 
+
   <p class="footer">
-    Participation is voluntary. Available responses may not cooperate.
+
+    Research Ethics Statement:
+    Participation is voluntary.
+    However, some response options
+    may behave unexpectedly. 😂
+
   </p>
 
 </div>
 
 
+
 <script>
 
-  const grade1 = document.getElementById("grade1");
-  const grade5 = document.getElementById("grade5");
-  const status = document.getElementById("status");
+  const grade1 =
+    document.getElementById("grade1");
+
+  const grade5 =
+    document.getElementById("grade5");
+
+  const status =
+    document.getElementById("status");
+
 
   let attempts = 0;
 
+
+  /*
+    Messages displayed whenever
+    Sir Maven attempts to choose Grade 5
+  */
 
   const researchMessages = [
 
     "⚠️ Response rejected. Please try again.",
 
-    "📊 Grade 5 appears to be an outlier.",
+    "📊 Grade 5 has been identified as an outlier.",
 
     "🔬 Insufficient evidence to support Grade 5.",
 
-    "💻 ERROR: Grade 5 failed data validation.",
+    "💻 ERROR 404: Valid Grade 5 response not found.",
 
     "📈 Current findings strongly favor Grade 1.",
 
-    "😭 Prof... the data is becoming very clear.",
+    "🧪 Grade 5 failed the reliability test.",
+
+    "😭 Sir Maven... the data is becoming very clear.",
 
     "🏃 Grade 5 has withdrawn from the study.",
 
-    "📊 Probability of selecting Grade 1 is approaching 100%."
+    "📊 Statistical analysis recommends Grade 1.",
+
+    "😂 Researcher bias detected... probably."
 
   ];
 
 
+
+  /*
+    FUNCTION:
+    Make Grade 5 escape
+  */
+
   function moveGrade5(event) {
 
     if (event) {
+
       event.preventDefault();
       event.stopPropagation();
+
     }
+
 
     attempts++;
 
 
-    // Make Grade 5 move freely around the screen
+    /*
+      Change Grade 5 from its normal
+      position to a floating position.
+    */
+
     grade5.style.position = "fixed";
 
 
+    /*
+      Keep Grade 5 inside the screen.
+    */
+
     const padding = 20;
 
+
     const maxX =
-      window.innerWidth - grade5.offsetWidth - padding;
+      window.innerWidth
+      - grade5.offsetWidth
+      - padding;
+
 
     const maxY =
-      window.innerHeight - grade5.offsetHeight - padding;
+      window.innerHeight
+      - grade5.offsetHeight
+      - padding;
 
+
+    /*
+      Generate random location
+    */
 
     const randomX =
       Math.max(
@@ -252,21 +341,40 @@
       );
 
 
-    grade5.style.left = randomX + "px";
-    grade5.style.top = randomY + "px";
+    /*
+      Move Grade 5
+    */
+
+    grade5.style.left =
+      randomX + "px";
+
+    grade5.style.top =
+      randomY + "px";
 
 
-    // Display research-related message
+    /*
+      Show a different research message
+      after every attempt.
+    */
+
     status.textContent =
       researchMessages[
-        (attempts - 1) % researchMessages.length
+        (attempts - 1)
+        % researchMessages.length
       ];
+
   }
 
 
 
-  // COMPUTER:
-  // Grade 5 runs away when mouse approaches
+  /*
+    ==============================
+    COMPUTER / LAPTOP
+    ==============================
+
+    Grade 5 escapes when
+    the mouse reaches it.
+  */
 
   grade5.addEventListener(
     "mouseenter",
@@ -274,8 +382,15 @@
   );
 
 
-  // PHONE / TABLET:
-  // Grade 5 moves before the tap can register
+
+  /*
+    ==============================
+    PHONE / TABLET
+    ==============================
+
+    Grade 5 escapes as soon as
+    Sir Maven touches the button.
+  */
 
   grade5.addEventListener(
     "pointerdown",
@@ -283,8 +398,10 @@
   );
 
 
+
   grade5.addEventListener(
     "touchstart",
+
     function(event) {
 
       event.preventDefault();
@@ -292,15 +409,28 @@
       moveGrade5(event);
 
     },
-    { passive: false }
+
+    {
+      passive: false
+    }
+
   );
 
 
-  // Extra protection:
-  // Grade 5 can NEVER be submitted
+
+  /*
+    ==============================
+    EXTRA PROTECTION
+    ==============================
+
+    Even if the browser somehow
+    registers a click on Grade 5,
+    it still cannot be selected.
+  */
 
   grade5.addEventListener(
     "click",
+
     function(event) {
 
       event.preventDefault();
@@ -308,102 +438,218 @@
       moveGrade5(event);
 
     }
+
   );
 
 
 
-  // GRADE 1
-  // The only valid response
+  /*
+    ==============================
+    GRADE 1
+    ==============================
+
+    Grade 1 NEVER moves.
+
+    It is the only valid
+    research response.
+  */
 
   grade1.addEventListener(
     "click",
+
     function() {
 
-      document.getElementById("mainCard").innerHTML = `
+
+      document.getElementById(
+        "mainCard"
+      ).innerHTML = `
+
 
         <span class="label">
-          RESEARCH COMPLETED
+
+          IT RESEARCH • STUDY COMPLETED
+
         </span>
 
+
         <h1>
+
           Response Received! ✅
+
         </h1>
 
-        <p>
+
+        <p class="intro">
+
           Thank you for participating
-          in our research, Prof.
+          in our very important study,
+          Sir Maven. 😂
+
+          <br><br>
+
+          Your response has been
+          successfully recorded and validated.
+
         </p>
+
 
 
         <div class="result-box">
 
+
           <small>
+
             CONFIRMED RECEIVED GRADE
+
           </small>
 
+
           <div class="final-grade">
+
             1.00 🎓
+
           </div>
 
+
           <strong>
-            Data successfully recorded.
+
+            Data successfully validated. ✅
+
           </strong>
+
 
         </div>
 
 
+
         <p>
-          <strong>Research Finding:</strong>
+
+          <strong>
+            📊 Research Finding
+          </strong>
+
           <br><br>
 
           After repeated testing,
           Grade 1 was the only response
-          successfully validated by the system.
+          successfully recorded by
+          the research instrument.
+
         </p>
 
 
+
         <p>
-          <strong>Conclusion:</strong>
+
+          <strong>
+            🔬 Conclusion
+          </strong>
+
           <br><br>
 
-          There is sufficient evidence
-          to accept Grade 1 and reject Grade 5.
+          Based on the data gathered,
+          there is sufficient evidence
+          to accept Grade 1 and
+          reject Grade 5.
+
           😂
+
         </p>
+
 
 
         <p>
-          <strong>Recommendation:</strong>
+
+          <strong>
+            📋 Recommendation
+          </strong>
+
           <br><br>
 
-          No further data collection is required.
-          Prof is advised to proceed immediately
-          to the most important phase:
+          The researchers recommend
+          that no further data collection
+          be conducted today.
+
+          <br><br>
+
+          Instead, Sir Maven is advised
+          to proceed immediately to
+          the next phase:
+
         </p>
+
 
 
         <h2>
-          REST → RECOVER → GET WELL ❤️
+
+          REST 🛌
+          <br>
+          ↓
+          <br>
+          RECOVER ❤️
+          <br>
+          ↓
+          <br>
+          GET WELL SOON! 💪
+
         </h2>
 
 
+
+        <hr>
+
+
+
         <p>
-          Jokes aside, we hope you feel
-          much better soon, Prof.
-          Enjoy your well-deserved rest day!
+
+          Jokes aside, Sir Maven,
+          we hope you get plenty of rest
+          and feel much better soon.
+
+          <br><br>
+
+          Thank you for still thinking
+          about us even when you're
+          not feeling well.
+
+          <br><br>
+
+          Enjoy your well-deserved
+          rest day, Sir!
+
+          ❤️
+
         </p>
+
 
 
         <p class="footer">
-          Limitation of the Study:
-          Grade 5 was included as an option
-          but refused to cooperate with
-          the researchers. 🏃💨
+
+          <strong>
+            Limitation of the Study:
+          </strong>
+
+          <br>
+
+          Grade 5 was included
+          as a possible response,
+          but repeatedly refused
+          to cooperate with
+          the researchers.
+
+          🏃💨
+
+          <br><br>
+
+          — Your IT Research Students
+
         </p>
+
 
       `;
 
     }
+
   );
 
 </script>
