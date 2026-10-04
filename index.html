@@ -1,23 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Get Well Soon, Sir Maven!
+  </title>
+
+
+  <style>
+
+    /* ==============================
+       GENERAL
+    ============================== */
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+
+    body {
+      margin: 0;
+
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #eef2f7;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      padding: 15px 0;
+
+      overflow-x: hidden;
+    }
+
+
+
+    /* ==============================
+       MAIN CARD
+    ============================== */
+
+    .container {
+
+      width: calc(100% - 20px);
+
+      max-width: 520px;
+
+      background: white;
+
+      padding: 30px 20px;
+
+      border-radius: 18px;
+
+      text-align: center;
+
+      box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.15);
+    }
+
+
+
+    /* ==============================
+       LABEL
+    ============================== */
+
+    .label {
+
+      display: inline-block;
+
+      background: #e8eef7;
+
+      padding: 7px 13px;
+
+      border-radius: 20px;
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      color: #444;
+    }
+
+
+
+    /* ==============================
+       TEXT
+    ============================== */
+
+    h1 {
+
+      font-size: 27px;
+
+      line-height: 1.25;
+
+      margin:
+        18px 0
+        12px;
+    }
+
+
+    h2 {
+
+      line-height: 1.6;
+
+      font-size: 23px;
+    }
+
+
+    .intro {
+
+      color: #555;
+
+      line-height: 1.65;
+
+      font-size: 15px;
+    }
+
+
+
+    /* ==============================
+       RESEARCH BOX
+    ============================== */
+
+    .research-box {
+
+      margin-top: 25px;
+
+      padding:
+        20px 12px;
+
+      background: #f8f9fb;
+
+      border-radius: 15px;
+    }
+
+
+    .research-box small {
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      color: #777;
+    }
+
+
+    .question {
+
+      margin-top: 12px;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      line-height: 1.5;
+    }
+
+
+
+    /* ==============================
+       BUTTON PLAYGROUND
+    ============================== */
+
+    .buttons {
+
+      position: relative;
+
+      width: 100%;
+
+      height: 270px;
+
+      margin-top: 15px;
+
+      overflow: hidden;
+
+      background: white;
+
+      border:
+        1px dashed
+        #d6dce3;
+
+      border-radius: 14px;
+
+      touch-action: manipulation;
+    }
+
+
+
+    /* ==============================
+       GRADE 1
+
+       REAL BUTTON
+       NEVER MOVES
+    ============================== */
+
+    #grade1 {
+
+      position: absolute;
+
+      left: 22%;
+
+      top: 50%;
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
+
+      width: 90px;
+
+      height: 55px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #198754;
+
+      color: white;
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      z-index: 20;
+
+      box-shadow:
+        0 4px 10px
+        rgba(
+          25,
+          135,
+          84,
+          0.25
+        );
+    }
+
+
+    #grade1:active {
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        )
+        scale(0.95);
+    }
+
+
+
+    /* ==============================
+       GRADE 5
+
+       IMPORTANT:
+
+       THIS IS NOT A BUTTON.
+
+       IT IS ONLY A DIV THAT
+       LOOKS LIKE A BUTTON.
+    ============================== */
+
+    #grade5 {
+
+      position: absolute;
+
+      /*
+        Initial location
+      */
+
+      left: 72%;
+
+      top: 42%;
+
+
+      width: 90px;
+
+      height: 55px;
+
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+
+      background: #dc3545;
+
+      color: white;
+
+
+      border-radius: 12px;
+
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+
+      box-shadow:
+        0 4px 10px
+        rgba(
+          220,
+          53,
+          69,
+          0.25
+        );
+
+
+      /*
+        VERY IMPORTANT:
+
+        Grade 5 itself
+        cannot receive
+        clicks or touches.
+      */
+
+      pointer-events: none;
+
+
+      user-select: none;
+
+      -webkit-user-select: none;
+
+
+      z-index: 10;
+
+
+      /*
+        NO transition.
+
+        It should TELEPORT,
+        not slowly move.
+      */
+
+      transition: none;
+    }
+
+
+
+    /* ==============================
+       STATUS
+    ============================== */
+
+    #status {
+
+      min-height: 55px;
+
+      margin-top: 15px;
+
+      padding: 5px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      color: #555;
+
+      line-height: 1.5;
+    }
+
+
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    .footer {
+
+      margin-top: 20px;
+
+      font-size: 11px;
+
+      color: #999;
+
+      line-height: 1.6;
+    }
+
+
+
+    /* ==============================
+       FINAL RESULT
+    ============================== */
+
+    .result-box {
+
+      background: #f4f8f5;
+
+      padding: 22px;
+
+      border-radius: 15px;
+
+      margin: 22px 0;
+
+      line-height: 1.6;
+    }
+
+
+    .final-grade {
+
+      font-size: 55px;
+
+      font-weight: bold;
+
+      margin:
+        15px 0;
+    }
+
+
+    hr {
+
+      border: 0;
+
+      border-top:
+        1px solid
+        #ddd;
+
+      margin:
+        25px 0;
+    }
+
+
+
+    /* ==============================
+       MOBILE
+    ============================== */
+
+    @media (
+      max-width: 600px
+    ) {
+
+      body {
+
+        padding:
+          8px 0;
+      }
+
+
+      .container {
+
+        width:
+          calc(
+            100% - 14px
+          );
+
+        padding:
+          22px 12px;
+
+        border-radius:
+          15px;
+      }
+
+
+      .label {
+
+        font-size:
+          9px;
+      }
+
+
+      h1 {
+
+        font-size:
+          23px;
+      }
+
+
+      .intro {
+
+        font-size:
+          14px;
+      }
+
+
+      .question {
+
+        font-size:
+          16px;
+      }
+
+
+      .research-box {
+
+        padding:
+          17px 8px;
+      }
+
+
+      /*
+        Bigger area gives
+        Grade 5 more room
+        to escape.
+      */
+
+      .buttons {
+
+        height:
+          300px;
+      }
+
+
+      #grade1 {
+
+        width:
+          82px;
+
+        height:
+          52px;
+
+        font-size:
+          20px;
+
+        left:
+          20%;
+      }
+
+
+      #grade5 {
+
+        width:
+          82px;
+
+        height:
+          52px;
+
+        font-size:
+          20px;
+      }
+
+
+      #status {
+
+        font-size:
+          13px;
+      }
+
+
+      .final-grade {
+
+        font-size:
+          45px;
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+
+  <div
+    class="container"
+    id="mainCard"
+  >
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <span class="label">
+
+      IT RESEARCH • FINAL DATA VALIDATION
+
+    </span>
+
+
+
+    <h1>
+
+      Get Well Soon,
+      Sir Maven! ❤️
+
+    </h1>
+
+
+
+    <!-- =========================
+         MESSAGE
+    ========================== -->
+
+    <p class="intro">
+
+      We hope you get plenty
+      of rest today and feel
+      better soon, Sir Maven!
+
+      <br><br>
+
+      But as your IT Research
+      students, we couldn't just
+      send a normal get-well-soon
+      message...
+
+      <br><br>
+
+      <strong>
+
+        We needed data. 📊😂
+
+      </strong>
+
+    </p>
+
+
+
+    <!-- =========================
+         RESEARCH BOX
+    ========================== -->
+
+    <div class="research-box">
+
+
+      <small>
+
+        RESEARCH QUESTION
+
+      </small>
+
+
+      <p class="question">
+
+        Sir Maven, please confirm
+        the grade received by
+        the researchers:
+
+      </p>
+
+
+
+      <!-- =========================
+           PLAYGROUND
+      ========================== -->
+
+      <div
+        class="buttons"
+        id="buttonArea"
+      >
+
+
+        <!--
+          GRADE 1
+
+          REAL BUTTON
+        -->
+
+        <button
+          id="grade1"
+          type="button"
+        >
+
+          1
+
+        </button>
+
+
+
+        <!--
+          GRADE 5
+
+          NOT A BUTTON.
+
+          JUST A DIV.
+        -->
+
+        <div id="grade5">
+
+          5
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- =========================
+           STATUS
+      ========================== -->
+
+      <div id="status">
+
+        Select one response
+        to validate our findings.
+
+      </div>
+
+
+    </div>
+
+
+
+    <p class="footer">
+
+      Research Ethics Statement:
+
+      Participation is voluntary.
+
+      <br>
+
+      Response options may behave
+      unexpectedly. 😂
+
+    </p>
+
+
+  </div>
+
+
+
+
 <script>
 
+
+/* =====================================
+   GET ELEMENTS
+===================================== */
+
 const area =
-  document.getElementById("buttonArea");
+  document.getElementById(
+    "buttonArea"
+  );
+
 
 const grade1 =
-  document.getElementById("grade1");
+  document.getElementById(
+    "grade1"
+  );
+
 
 const grade5 =
-  document.getElementById("grade5");
+  document.getElementById(
+    "grade5"
+  );
+
 
 const status =
-  document.getElementById("status");
+  document.getElementById(
+    "status"
+  );
+
+
+
+/* =====================================
+   ATTEMPT COUNTER
+===================================== */
 
 let attempts = 0;
 
 
-/* ============================
-   RESEARCH MESSAGES
-============================ */
+
+/* =====================================
+   FUNNY MESSAGES
+===================================== */
 
 const messages = [
 
@@ -31,201 +797,278 @@ const messages = [
 
   "🧪 Grade 5 failed data validation.",
 
-  "📈 Findings strongly favor Grade 1.",
+  "📈 Current findings strongly favor Grade 1.",
 
-  "😭 Sir Maven... the data is becoming very clear.",
+  "😭 Sir Maven... the findings are becoming very clear.",
 
   "🏃 Grade 5 has withdrawn from the study.",
 
-  "😂 Please consider the remaining valid response."
+  "📊 Statistical analysis recommends Grade 1.",
+
+  "😂 Researcher bias detected... probably."
 
 ];
 
 
-/* ============================
-   POSSIBLE LOCATIONS FOR 5
 
-   It jumps FAR AWAY instead
-   of moving randomly nearby.
-============================ */
+/* =====================================
+   GET SAFE POSITIONS
 
-const positions = [
+   These are FAR APART.
 
-  {
-    left: "68%",
-    top: "15%"
-  },
+   Grade 5 will jump between
+   these locations.
+===================================== */
 
-  {
-    left: "68%",
-    top: "70%"
-  },
-
-  {
-    left: "40%",
-    top: "5%"
-  },
-
-  {
-    left: "40%",
-    top: "75%"
-  },
-
-  {
-    left: "72%",
-    top: "42%"
-  }
-
-];
+function getPositions() {
 
 
-let currentPosition = 4;
+  const areaWidth =
+    area.clientWidth;
 
 
-/* ============================
-   MOVE 5 FAR AWAY
-============================ */
+  const areaHeight =
+    area.clientHeight;
 
-function moveFiveAway(
-  fingerX,
-  fingerY
+
+  const fiveWidth =
+    grade5.offsetWidth;
+
+
+  const fiveHeight =
+    grade5.offsetHeight;
+
+
+  const padding = 12;
+
+
+
+  return [
+
+
+    /* TOP LEFT */
+
+    {
+      x: padding,
+      y: padding
+    },
+
+
+    /* TOP RIGHT */
+
+    {
+      x:
+        areaWidth
+        - fiveWidth
+        - padding,
+
+      y:
+        padding
+    },
+
+
+    /* BOTTOM LEFT */
+
+    {
+      x:
+        padding,
+
+      y:
+        areaHeight
+        - fiveHeight
+        - padding
+    },
+
+
+    /* BOTTOM RIGHT */
+
+    {
+      x:
+        areaWidth
+        - fiveWidth
+        - padding,
+
+      y:
+        areaHeight
+        - fiveHeight
+        - padding
+    },
+
+
+    /* TOP CENTER */
+
+    {
+      x:
+        (
+          areaWidth
+          - fiveWidth
+        )
+        / 2,
+
+      y:
+        padding
+    },
+
+
+    /* BOTTOM CENTER */
+
+    {
+      x:
+        (
+          areaWidth
+          - fiveWidth
+        )
+        / 2,
+
+      y:
+        areaHeight
+        - fiveHeight
+        - padding
+    }
+
+
+  ];
+
+}
+
+
+
+/* =====================================
+   MOVE GRADE 5 TO THE FARTHEST
+   POSITION FROM FINGER / MOUSE
+===================================== */
+
+function moveFiveFarAway(
+  pointerX,
+  pointerY
 ) {
 
+
   attempts++;
+
 
 
   const areaRect =
     area.getBoundingClientRect();
 
 
-  /*
-    Convert every possible
-    location into screen
-    coordinates.
+  const positions =
+    getPositions();
 
-    Then find which one is
-    FARTHEST from the finger.
-  */
 
-  let bestPosition = null;
 
-  let greatestDistance = -1;
+  let bestPosition =
+    positions[0];
+
+
+  let greatestDistance =
+    -1;
+
 
 
   positions.forEach(
-    function(position, index) {
+
+    function(position) {
 
 
       /*
-        Don't use the exact
-        same position again.
+        Convert position inside
+        playground into screen
+        coordinates.
       */
 
-      if (
-        index === currentPosition
-      ) {
-
-        return;
-
-      }
-
-
-      const xPercent =
-        parseFloat(
-          position.left
-        ) / 100;
+      const screenX =
+        areaRect.left
+        +
+        position.x
+        +
+        grade5.offsetWidth / 2;
 
 
-      const yPercent =
-        parseFloat(
-          position.top
-        ) / 100;
+      const screenY =
+        areaRect.top
+        +
+        position.y
+        +
+        grade5.offsetHeight / 2;
 
 
-      const positionX =
-        areaRect.left +
-        areaRect.width *
-        xPercent;
+
+      /*
+        Distance between
+        pointer and position.
+      */
+
+      const distanceX =
+        pointerX
+        - screenX;
 
 
-      const positionY =
-        areaRect.top +
-        areaRect.height *
-        yPercent;
+      const distanceY =
+        pointerY
+        - screenY;
 
 
       const distance =
         Math.sqrt(
 
-          Math.pow(
-            fingerX - positionX,
-            2
-          )
+          distanceX
+          * distanceX
 
           +
 
-          Math.pow(
-            fingerY - positionY,
-            2
-          )
+          distanceY
+          * distanceY
 
         );
 
 
+
       /*
-        Pick the location
-        farthest away.
+        Pick the FARTHEST
+        possible location.
       */
 
       if (
-        distance >
+        distance
+        >
         greatestDistance
       ) {
+
 
         greatestDistance =
           distance;
 
-        bestPosition =
-          {
-            position:
-              position,
 
-            index:
-              index
-          };
+        bestPosition =
+          position;
 
       }
 
+
     }
+
   );
 
 
+
   /*
-    Move instantly.
+    TELEPORT IMMEDIATELY
   */
 
-  if (bestPosition) {
-
-    grade5.style.left =
-      bestPosition
-      .position
-      .left;
+  grade5.style.left =
+    bestPosition.x
+    + "px";
 
 
-    grade5.style.top =
-      bestPosition
-      .position
-      .top;
+  grade5.style.top =
+    bestPosition.y
+    + "px";
 
-
-    currentPosition =
-      bestPosition.index;
-
-  }
 
 
   /*
-    Update funny message.
+    SHOW FUNNY MESSAGE
   */
 
   status.textContent =
@@ -233,7 +1076,9 @@ function moveFiveAway(
     messages[
 
       (attempts - 1)
+
       %
+
       messages.length
 
     ];
@@ -241,16 +1086,15 @@ function moveFiveAway(
 }
 
 
-/* ============================
-   DISTANCE CHECK
 
-   Check how close the
-   finger/mouse is to 5.
-============================ */
+/* =====================================
+   CHECK HOW CLOSE THE POINTER
+   IS TO GRADE 5
+===================================== */
 
-function checkDistance(
-  clientX,
-  clientY
+function checkFiveDistance(
+  pointerX,
+  pointerY
 ) {
 
 
@@ -259,49 +1103,68 @@ function checkDistance(
     .getBoundingClientRect();
 
 
-  const centerX =
-    fiveRect.left +
+
+  const fiveCenterX =
+    fiveRect.left
+    +
     fiveRect.width / 2;
 
 
-  const centerY =
-    fiveRect.top +
+  const fiveCenterY =
+    fiveRect.top
+    +
     fiveRect.height / 2;
+
+
+
+  const distanceX =
+    pointerX
+    -
+    fiveCenterX;
+
+
+  const distanceY =
+    pointerY
+    -
+    fiveCenterY;
+
 
 
   const distance =
     Math.sqrt(
 
-      Math.pow(
-        clientX - centerX,
-        2
-      )
+      distanceX
+      * distanceX
 
       +
 
-      Math.pow(
-        clientY - centerY,
-        2
-      )
+      distanceY
+      * distanceY
 
     );
+
 
 
   /*
-    IMPORTANT:
+    BIG DETECTION RADIUS.
 
-    130px detection radius.
+    Grade 5 runs when the
+    pointer gets within 125px.
 
-    This is MUCH bigger than
-    the visible Grade 5.
+    This is much bigger than
+    the actual Grade 5.
   */
 
-  if (distance < 130) {
+  if (
+    distance < 125
+  ) {
 
-    moveFiveAway(
-      clientX,
-      clientY
+
+    moveFiveFarAway(
+      pointerX,
+      pointerY
     );
+
 
     return true;
 
@@ -313,12 +1176,12 @@ function checkDistance(
 }
 
 
-/* ============================
-   COMPUTER
 
-   Continuously watch
-   mouse position.
-============================ */
+/* =====================================
+   DESKTOP
+
+   CONTINUOUSLY TRACK MOUSE
+===================================== */
 
 area.addEventListener(
 
@@ -326,22 +1189,27 @@ area.addEventListener(
 
   function(event) {
 
-    checkDistance(
+
+    checkFiveDistance(
+
       event.clientX,
+
       event.clientY
+
     );
+
 
   }
 
 );
 
 
-/* ============================
-   PHONE
 
-   Detect first contact
-   anywhere in answer area.
-============================ */
+/* =====================================
+   POINTER DEVICES
+
+   PHONE / TABLET / PEN
+===================================== */
 
 area.addEventListener(
 
@@ -351,7 +1219,8 @@ area.addEventListener(
 
 
     /*
-      Grade 1 remains clickable.
+      If Grade 1 is pressed,
+      allow it normally.
     */
 
     if (
@@ -363,20 +1232,37 @@ area.addEventListener(
     }
 
 
+
+    /*
+      Check whether finger
+      landed near Grade 5.
+    */
+
     const nearFive =
-      checkDistance(
+      checkFiveDistance(
+
         event.clientX,
+
         event.clientY
+
       );
 
 
+
+    /*
+      Prevent any normal
+      action in that location.
+    */
+
     if (nearFive) {
+
 
       event.preventDefault();
 
       event.stopPropagation();
 
     }
+
 
   },
 
@@ -385,9 +1271,12 @@ area.addEventListener(
 );
 
 
-/* ============================
-   TOUCHSCREEN BACKUP
-============================ */
+
+/* =====================================
+   TOUCH BACKUP
+
+   FOR MOBILE BROWSERS
+===================================== */
 
 area.addEventListener(
 
@@ -396,6 +1285,10 @@ area.addEventListener(
   function(event) {
 
 
+    /*
+      Keep Grade 1 working.
+    */
+
     if (
       event.target === grade1
     ) {
@@ -403,6 +1296,7 @@ area.addEventListener(
       return;
 
     }
+
 
 
     const touch =
@@ -416,20 +1310,27 @@ area.addEventListener(
     }
 
 
+
     const nearFive =
-      checkDistance(
+      checkFiveDistance(
+
         touch.clientX,
+
         touch.clientY
+
       );
 
 
+
     if (nearFive) {
+
 
       event.preventDefault();
 
       event.stopPropagation();
 
     }
+
 
   },
 
@@ -441,9 +1342,12 @@ area.addEventListener(
 );
 
 
-/* ============================
-   GRADE 1
-============================ */
+
+/* =====================================
+   GRADE 1 CLICK
+
+   ONLY REAL ANSWER
+===================================== */
 
 grade1.addEventListener(
 
@@ -464,11 +1368,13 @@ grade1.addEventListener(
       </span>
 
 
+
       <h1>
 
         Response Received! ✅
 
       </h1>
+
 
 
       <p class="intro">
@@ -484,6 +1390,7 @@ grade1.addEventListener(
         and validated.
 
       </p>
+
 
 
       <div class="result-box">
@@ -514,14 +1421,18 @@ grade1.addEventListener(
       </div>
 
 
+
       <p>
 
         <strong>
+
           📊 Research Finding
+
         </strong>
 
         <br><br>
 
+        After repeated testing,
         Grade 1 was the only response
         successfully validated by
         the research instrument.
@@ -529,25 +1440,32 @@ grade1.addEventListener(
       </p>
 
 
+
       <p>
 
         <strong>
+
           🔬 Conclusion
+
         </strong>
 
         <br><br>
 
-        The gathered data provides
-        sufficient evidence to accept
-        Grade 1 and reject Grade 5. 😂
+        Based on the data gathered,
+        there is sufficient evidence
+        to accept Grade 1 and
+        reject Grade 5. 😂
 
       </p>
+
 
 
       <p>
 
         <strong>
+
           📋 Recommendation
+
         </strong>
 
         <br><br>
@@ -557,10 +1475,12 @@ grade1.addEventListener(
 
         <br><br>
 
-        Sir Maven should now proceed
+        Sir Maven should now
+        proceed immediately
         to the next phase:
 
       </p>
+
 
 
       <h2>
@@ -568,13 +1488,17 @@ grade1.addEventListener(
         REST 🛌
 
         <br>
+
         ↓
+
         <br>
 
         RECOVER ❤️
 
         <br>
+
         ↓
+
         <br>
 
         GET WELL SOON! 💪
@@ -582,14 +1506,17 @@ grade1.addEventListener(
       </h2>
 
 
+
       <hr>
+
 
 
       <p class="intro">
 
         Jokes aside, Sir Maven,
-        we hope you get plenty of rest
-        and feel much better soon.
+        we hope you get plenty
+        of rest and feel
+        much better soon.
 
         <br><br>
 
@@ -603,25 +1530,40 @@ grade1.addEventListener(
       </p>
 
 
+
       <p class="footer">
 
         <strong>
+
           Limitation of the Study:
+
         </strong>
 
         <br><br>
 
         Grade 5 was included
-        as a possible response
+        as a possible response,
+
+        <br>
+
         but repeatedly refused
-        to participate. 🏃💨
+        to cooperate with
+        the researchers. 🏃💨
 
       </p>
 
+
     `;
+
 
   }
 
 );
 
+
 </script>
+
+
+</body>
+
+</html>
