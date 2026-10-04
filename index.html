@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Research Grade Confirmation</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 520px;
+      background: white;
+      padding: 35px 25px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+    }
+
+    .label {
+      display: inline-block;
+      background: #e8eef7;
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 18px 0 10px;
+    }
+
+    .intro {
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .research-box {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f8f9fb;
+      border-radius: 12px;
+    }
+
+    .research-box small {
+      font-weight: bold;
+      color: #777;
+    }
+
+    .question {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      min-height: 80px;
+    }
+
+    button {
+      width: 120px;
+      height: 58px;
+      margin: 8px;
+      border: none;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    #grade1 {
+      background: #198754;
+      color: white;
+    }
+
+    #grade1:hover {
+      transform: scale(1.05);
+    }
+
+    #grade5 {
+      background: #dc3545;
+      color: white;
+      z-index: 9999;
+    }
+
+    #status {
+      min-height: 45px;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #999;
+    }
+
+    .final-grade {
+      font-size: 55px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .result-box {
+      background: #f4f8f5;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container" id="mainCard">
+
+  <span class="label">IT RESEARCH • DATA COLLECTION</span>
+
+  <h1>Get Well Soon, Prof! ❤️</h1>
+
+  <p class="intro">
+    We hope you get plenty of rest today and feel better soon, Prof!
+    <br><br>
+    But since we're IT Research students, we couldn't just send
+    a normal get-well message...
+    <br><br>
+    <strong>We need one last piece of data. 😂</strong>
+  </p>
+
+  <div class="research-box">
+
+    <small>RESEARCH QUESTION</small>
+
+    <p class="question">
+      Please confirm the grade received by the researchers:
+    </p>
+
+    <div class="buttons">
+
+      <button id="grade1">
+        1
+      </button>
+
+      <button id="grade5">
+        5
+      </button>
+
+    </div>
+
+    <div id="status">
+      Select one response to complete the study.
+    </div>
+
+  </div>
+
+  <p class="footer">
+    Participation is voluntary. Available responses may not cooperate.
+  </p>
+
+</div>
+
+
+<script>
+
+  const grade1 = document.getElementById("grade1");
+  const grade5 = document.getElementById("grade5");
+  const status = document.getElementById("status");
+
+  let attempts = 0;
+
+
+  const researchMessages = [
+
+    "⚠️ Response rejected. Please try again.",
+
+    "📊 Grade 5 appears to be an outlier.",
+
+    "🔬 Insufficient evidence to support Grade 5.",
+
+    "💻 ERROR: Grade 5 failed data validation.",
+
+    "📈 Current findings strongly favor Grade 1.",
+
+    "😭 Prof... the data is becoming very clear.",
+
+    "🏃 Grade 5 has withdrawn from the study.",
+
+    "📊 Probability of selecting Grade 1 is approaching 100%."
+
+  ];
+
+
+  function moveGrade5(event) {
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    attempts++;
+
+
+    // Make Grade 5 move freely around the screen
+    grade5.style.position = "fixed";
+
+
+    const padding = 20;
+
+    const maxX =
+      window.innerWidth - grade5.offsetWidth - padding;
+
+    const maxY =
+      window.innerHeight - grade5.offsetHeight - padding;
+
+
+    const randomX =
+      Math.max(
+        padding,
+        Math.random() * maxX
+      );
+
+
+    const randomY =
+      Math.max(
+        padding,
+        Math.random() * maxY
+      );
+
+
+    grade5.style.left = randomX + "px";
+    grade5.style.top = randomY + "px";
+
+
+    // Display research-related message
+    status.textContent =
+      researchMessages[
+        (attempts - 1) % researchMessages.length
+      ];
+  }
+
+
+
+  // COMPUTER:
+  // Grade 5 runs away when mouse approaches
+
+  grade5.addEventListener(
+    "mouseenter",
+    moveGrade5
+  );
+
+
+  // PHONE / TABLET:
+  // Grade 5 moves before the tap can register
+
+  grade5.addEventListener(
+    "pointerdown",
+    moveGrade5
+  );
+
+
+  grade5.addEventListener(
+    "touchstart",
+    function(event) {
+
+      event.preventDefault();
+
+      moveGrade5(event);
+
+    },
+    { passive: false }
+  );
+
+
+  // Extra protection:
+  // Grade 5 can NEVER be submitted
+
+  grade5.addEventListener(
+    "click",
+    function(event) {
+
+      event.preventDefault();
+
+      moveGrade5(event);
+
+    }
+  );
+
+
+
+  // GRADE 1
+  // The only valid response
+
+  grade1.addEventListener(
+    "click",
+    function() {
+
+      document.getElementById("mainCard").innerHTML = `
+
+        <span class="label">
+          RESEARCH COMPLETED
+        </span>
+
+        <h1>
+          Response Received! ✅
+        </h1>
+
+        <p>
+          Thank you for participating
+          in our research, Prof.
+        </p>
+
+
+        <div class="result-box">
+
+          <small>
+            CONFIRMED RECEIVED GRADE
+          </small>
+
+          <div class="final-grade">
+            1.00 🎓
+          </div>
+
+          <strong>
+            Data successfully recorded.
+          </strong>
+
+        </div>
+
+
+        <p>
+          <strong>Research Finding:</strong>
+          <br><br>
+
+          After repeated testing,
+          Grade 1 was the only response
+          successfully validated by the system.
+        </p>
+
+
+        <p>
+          <strong>Conclusion:</strong>
+          <br><br>
+
+          There is sufficient evidence
+          to accept Grade 1 and reject Grade 5.
+          😂
+        </p>
+
+
+        <p>
+          <strong>Recommendation:</strong>
+          <br><br>
+
+          No further data collection is required.
+          Prof is advised to proceed immediately
+          to the most important phase:
+        </p>
+
+
+        <h2>
+          REST → RECOVER → GET WELL ❤️
+        </h2>
+
+
+        <p>
+          Jokes aside, we hope you feel
+          much better soon, Prof.
+          Enjoy your well-deserved rest day!
+        </p>
+
+
+        <p class="footer">
+          Limitation of the Study:
+          Grade 5 was included as an option
+          but refused to cooperate with
+          the researchers. 🏃💨
+        </p>
+
+      `;
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
